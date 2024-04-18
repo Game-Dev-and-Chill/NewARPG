@@ -23,11 +23,12 @@ func cast(_target_body, _caster_body):
             "speed": speed,
             "execute_distance": execute_distance,
             "scale": Vector3(scale,scale,scale),
-            "id": mp.my_id,
+            #"id": mp.my_id,
             'spell_script_path': get_path(),
         }
-        var properties_array = mp.root.prep_prefab_array(properties_dict).duplicate()
-        mp.root.request_rpc_prefab.rpc_id(1,"Spell_Projectiles", projectile.get_path(), prefab_pos, Vector3.ZERO, properties_array)
+        #var properties_array = mp.root.prep_prefab_array(properties_dict).duplicate()
+        #mp.root.request_rpc_prefab.rpc_id(1,"Spell_Projectiles", projectile.get_path(), prefab_pos, Vector3.ZERO, properties_array)
+        print("Fix_Spell_Projectile.gd")
         
 func post_cast(_target, _caster):
     for child in get_children() as Array[SpellEffect]:
