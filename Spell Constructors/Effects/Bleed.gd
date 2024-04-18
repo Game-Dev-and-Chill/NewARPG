@@ -28,4 +28,5 @@ func post_cast(_target, _caster):
 
 
 func tick(_target):
-    mp.set_all.rpc(_target.get_path(), "health", str("-= ", tick_amount))
+    #mp.set_all.rpc(_target.get_path(), "health", str("-= ", tick_amount))
+    print("fix tick in Bleed")
