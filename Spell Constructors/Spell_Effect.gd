@@ -2,16 +2,16 @@ extends Node
 class_name SpellEffect
 
 func pre_cast(_target, _caster):
-    return true
+	return true
 
 func cast(_target, _caster):
-    pass
-    
+	pass
+
 func post_cast(_target, _caster):
-    pass
+	pass
 
 func pre_tick(_target):
-    return true
-    
+	return true
+
 func tick(_target):
-    pass
+	pass

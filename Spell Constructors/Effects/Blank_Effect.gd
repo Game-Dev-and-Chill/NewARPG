@@ -17,19 +17,17 @@ var dur_per_tick = duration/float(tick_count-1)
 
 # Things to do before the cast
 func pre_cast(_target, _caster):
-    var checks = true
-    return checks
-
+	var checks = true
+	return checks
 
 # Things to do during the cast
 func cast(_target, _caster):
-    pass
-
+	pass
 
 # Things to do after the cast    
 func post_cast(_target, _caster):
-    pass
+	pass
 
 # Things to apply over time
 func tick(_target):
-    pass
+	pass
