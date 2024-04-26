@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt3qk7xa3uoxc"]
+
+[ext_resource type="Script" path="res://Camera_Rig/Camera_Rig.gd" id="1_7nnih"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aok2l"]
+
+[node name="Camera_Container" type="Node3D" node_paths=PackedStringArray("spring_arm")]
+script = ExtResource("1_7nnih")
+spring_arm = NodePath("Camera_Arm")
+
+[node name="Camera_Arm" type="SpringArm3D" parent="."]
+collision_mask = 3
+shape = SubResource("CapsuleShape3D_aok2l")
+spring_length = 10.0
+
+[node name="Camera" type="Camera3D" parent="Camera_Arm"]
+current = true

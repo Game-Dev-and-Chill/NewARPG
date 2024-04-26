@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=3 uid="uid://c18mt1xhe47jl"]
+
+[ext_resource type="Script" path="res://scene_root.gd" id="1_7dq7q"]
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_o8mak"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="2_3qkbt"]
+[ext_resource type="Script" path="res://Interact_Agent.gd" id="2_ntvqb"]
+[ext_resource type="Script" path="res://CamTar.gd" id="2_tvdew"]
+[ext_resource type="Script" path="res://Interactable.gd" id="4_orp2n"]
+
+[sub_resource type="Environment" id="Environment_gve3b"]
+sdfgi_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1rmba"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_42hqr"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3m8mo"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pwk0n"]
+top_radius = 0.2
+bottom_radius = 0.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ioxcs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bn51e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n83jy"]
+material = SubResource("StandardMaterial3D_bn51e")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ggvq5"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("player_body")]
+script = ExtResource("1_7dq7q")
+player_body = NodePath("CharacterBody3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gve3b")
+
+[node name="Floor_Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
+mesh = SubResource("PlaneMesh_1rmba")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor_Plane"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor_Plane/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_42hqr")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19791, 0)
+collision_layer = 4
+collision_mask = 11
+platform_floor_layers = 4294967041
+platform_wall_layers = 2
+script = ExtResource("1_o8mak")
+camera = NodePath("../CamTar/Camera3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_3m8mo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D/MeshInstance3D"]
+transform = Transform3D(-8.42961e-10, 4.37033e-08, 1, 0.999814, 0.0192847, 0, -0.0192847, 0.999814, -4.37114e-08, 0, 0.398, -1.274)
+mesh = SubResource("CylinderMesh_pwk0n")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_ioxcs")
+
+[node name="Interact_Agent" type="Node" parent="CharacterBody3D"]
+script = ExtResource("2_ntvqb")
+
+[node name="CamTar" type="Node3D" parent="." node_paths=PackedStringArray("body")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.19854, 0)
+script = ExtResource("2_tvdew")
+body = NodePath("../CharacterBody3D")
+
+[node name="Camera3D" type="Camera3D" parent="CamTar"]
+transform = Transform3D(0.707107, 0.707107, -5.19069e-08, -0.183013, 0.183013, 0.965926, 0.683013, -0.683013, 0.258819, -2, 10, 2)
+script = ExtResource("2_3qkbt")
+
+[node name="Stash" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stash"]
+transform = Transform3D(1.95025, 0, 0, 0, 1.67892, 0, 0, 0, 3.52277, 0, 0.719076, 0)
+mesh = SubResource("BoxMesh_n83jy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Stash/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stash/MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_ggvq5")
+
+[node name="Interactable" type="Node" parent="Stash" node_paths=PackedStringArray("body", "owner_node")]
+script = ExtResource("4_orp2n")
+body = NodePath("../MeshInstance3D/StaticBody3D")
+owner_node = NodePath("..")

@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://75ygotputjdf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mtl1h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gj6je"]
+
+[sub_resource type="GDScript" id="GDScript_yd6od"]
+script/source = "#NewScript.gd
+#@tool
+class_name interaction
+extends interactable
+
+#region Variables
+#signals
+#enums
+#constants
+#@export variables
+#public variables
+#private variables
+#@onready variables
+#endregion
+
+
+#region Functions
+#optional built-in virtual _init method
+#optional built-in virtual _enter_tree() method
+#optional built-in virtual _ready method - Called when the node enters the scene tree for the first time.
+#region remaining built-in virtual methods
+#endregion
+#region public methods
+#endregion
+#region private methods
+#endregion
+#region subclasses
+#endregion
+#endregion
+
+#region Auto_Include_Functions
+#endregion
+"
+
+[node name="NPC" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_mtl1h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_gj6je")
+
+[node name="interaction" type="Node" parent="."]
+script = SubResource("GDScript_yd6od")
