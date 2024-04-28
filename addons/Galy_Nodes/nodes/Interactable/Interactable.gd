@@ -34,11 +34,13 @@ func _ready():
 	player_body = get_tree().current_scene.player_body
 	interact_agent = player_body.get_node("Interact_Agent")
 	_interactable_ready()
+
 #region remaining built-in virtual methods
 func _notification(what):
 	if what == NOTIFICATION_READY:
 		assert(_ready_called, "_ready method shouldn't be overidden in interaction. Use _interactable_ready instead.")
 #endregion
+
 #region public methods
 func mouse_over_interactable():
 	interact_agent.over_interactable = true
@@ -50,27 +52,29 @@ func mouse_leave_interactable():
 	interact_agent.over_interactable = false
 	interact_agent.interactable_script = null
 	_interactable_mouse_leave()
+
 #endregion
 #region private methods
 ## A [method Node._ready] method for interactable objects
 func _interactable_ready():
 	pass
-	
-	
+
+
 ## A method for interactable objects that calls functionality when a mouse enters the interactables collider.
 func _interactable_mouse_enter():
 	pass
-	
-	
+
+
 ## A method for interactable objects that calls functionality when a mouse exits the interactables collider.
 func _interactable_mouse_leave():
 	pass
-	
-	
+
+
 ## Method to add functionality when the object is interacted with.
 func _interact():
 	print("interacted with ", owner_node.name, " no interaction defined. Overide the interact method.")
 #endregion
+
 #region subclasses
 #endregion
 #endregion

@@ -2,102 +2,190 @@
 
 [ext_resource type="Script" path="res://Settings.gd" id="1_tyu84"]
 
-[node name="Settings" type="PanelContainer" node_paths=PackedStringArray("ui_mot_enabled", "ui_mofs_slider", "ui_mofs_text", "ui_uifs_slider", "ui_uifs_text")]
+[node name="Settings" type="PanelContainer" node_paths=PackedStringArray("ui_xs_slider", "ui_xs_text", "ui_ys_slider", "ui_ys_text", "ui_mot_enabled", "ui_mofs_slider", "ui_mofs_text", "ui_uifs_slider", "ui_uifs_text")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tyu84")
-ui_mot_enabled = NodePath("TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - text/CheckButton")
-ui_mofs_slider = NodePath("TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size/HSlider")
-ui_mofs_text = NodePath("TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size/LineEdit")
-ui_uifs_slider = NodePath("TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size/HSlider")
-ui_uifs_text = NodePath("TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size/LineEdit")
+ui_xs_slider = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/x sensitivity/HSlider")
+ui_xs_text = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/x sensitivity/LineEdit")
+ui_ys_slider = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/y sensitivity/HSlider")
+ui_ys_text = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/y sensitivity/LineEdit")
+ui_mot_enabled = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/Mouse Over - text/CheckButton")
+ui_mofs_slider = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/Mouse Over - Font Size/HSlider")
+ui_mofs_text = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/Mouse Over - Font Size/LineEdit")
+ui_uifs_slider = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/User Interface - Font Size/HSlider")
+ui_uifs_text = NodePath("TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/User Interface - Font Size/LineEdit")
 
 [node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+current_tab = 3
+
+[node name="Gameplay Settings" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Graphics Settings" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Control Settings" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="UI Settings" type="Control" parent="TabContainer"]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="TabContainer/UI Settings"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/UI Settings"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 250
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/UI Settings/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/UI Settings/MarginContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="cursor container" type="VBoxContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Mouse Over - text" type="HBoxContainer" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer"]
+[node name="cursor" type="RichTextLabel" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]CURSOR[/center]"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container"]
+layout_mode = 2
+theme_override_constants/margin_top = -8
+theme_override_constants/margin_bottom = 6
+
+[node name="ColorRect" type="ColorRect" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - text"]
+[node name="x sensitivity" type="HBoxContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/x sensitivity"]
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+text = "Mouse X Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/x sensitivity"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+min_value = 4.0
+max_value = 256.0
+value = 32.0
+rounded = true
+ticks_on_borders = true
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/x sensitivity"]
+layout_mode = 2
+placeholder_text = "32"
+virtual_keyboard_type = 2
+
+[node name="y sensitivity" type="HBoxContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/y sensitivity"]
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+text = "Mouse Y Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/y sensitivity"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+min_value = 4.0
+max_value = 256.0
+value = 32.0
+rounded = true
+ticks_on_borders = true
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/cursor container/y sensitivity"]
+layout_mode = 2
+placeholder_text = "32"
+virtual_keyboard_type = 2
+
+[node name="category container" type="VBoxContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="category" type="RichTextLabel" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]CATEGORY[/center]"
+fit_content = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container"]
+layout_mode = 2
+theme_override_constants/margin_top = -8
+theme_override_constants/margin_bottom = 6
+
+[node name="ColorRect" type="ColorRect" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/MarginContainer2"]
+layout_mode = 2
+
+[node name="Mouse Over - text" type="HBoxContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/Mouse Over - text"]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 text = "Mouse Over - Text"
 
-[node name="CheckButton" type="CheckButton" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - text"]
+[node name="CheckButton" type="CheckButton" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/Mouse Over - text"]
 layout_mode = 2
 size_flags_horizontal = 0
+button_pressed = true
 
-[node name="Mouse Over - Font Size" type="HBoxContainer" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer"]
+[node name="Mouse Over - Font Size" type="HBoxContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size"]
+[node name="Label" type="Label" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/Mouse Over - Font Size"]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 text = "Mouse Over - Font Size"
 
-[node name="HSlider" type="HSlider" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size"]
+[node name="HSlider" type="HSlider" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/Mouse Over - Font Size"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
-min_value = 1.0
+min_value = 4.0
 max_value = 256.0
-value = 1.0
+value = 32.0
 rounded = true
-allow_greater = true
 ticks_on_borders = true
 
-[node name="LineEdit" type="LineEdit" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size"]
+[node name="LineEdit" type="LineEdit" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/Mouse Over - Font Size"]
 layout_mode = 2
 placeholder_text = "32"
 virtual_keyboard_type = 2
 
-[node name="User Interface - Font Size" type="HBoxContainer" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer"]
+[node name="User Interface - Font Size" type="HBoxContainer" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size"]
+[node name="Label" type="Label" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/User Interface - Font Size"]
 custom_minimum_size = Vector2(250, 25)
 layout_mode = 2
 text = "User Interface - Font Size"
 
-[node name="HSlider" type="HSlider" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size"]
+[node name="HSlider" type="HSlider" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/User Interface - Font Size"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
-min_value = 1.0
+min_value = 4.0
 max_value = 256.0
-value = 1.0
+value = 32.0
 rounded = true
-allow_greater = true
 ticks_on_borders = true
 
-[node name="LineEdit" type="LineEdit" parent="TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size"]
+[node name="LineEdit" type="LineEdit" parent="TabContainer/UI Settings/MarginContainer/VBoxContainer/category container/User Interface - Font Size"]
 layout_mode = 2
 placeholder_text = "32"
 virtual_keyboard_type = 2
-
-[node name="Cursor Settings" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-
-[connection signal="toggled" from="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - text/CheckButton" to="." method="_toggled_mouse_over_text"]
-[connection signal="value_changed" from="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size/HSlider" to="." method="_on_slider_change_mouse_over_font_size"]
-[connection signal="text_changed" from="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size/LineEdit" to="." method="_on_text_change_mouse_over_font_size"]
-[connection signal="text_changed" from="TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size/LineEdit" to="." method="numbers_only" binds= [NodePath("TabContainer/UI Settings/CenterContainer/VBoxContainer/Mouse Over - Font Size/LineEdit")]]
-[connection signal="value_changed" from="TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size/HSlider" to="." method="_on_slider_change_user_interface_font_size"]
-[connection signal="text_changed" from="TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size/LineEdit" to="." method="_on_text_change_user_interface_font_size"]
-[connection signal="text_changed" from="TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size/LineEdit" to="." method="numbers_only" binds= [NodePath("TabContainer/UI Settings/CenterContainer/VBoxContainer/User Interface - Font Size/LineEdit")]]

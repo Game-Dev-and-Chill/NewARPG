@@ -1,7 +1,7 @@
 #NewScript.gd
 #@tool
 #class_name interaction
-extends Node
+extends Node3D
 # Description: This class serves as a template for new scripts in the Godot engine, providing structured sections for various types of variables and methods.
 
 

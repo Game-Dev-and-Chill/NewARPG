@@ -27,8 +27,7 @@ func _interact():
 
 
 func _interactable_mouse_enter():
-	if .mouse_over_popup_names:
-		Stash_Label.show()
+	Stash_Label.show()
 
 
 func _interactable_mouse_leave():

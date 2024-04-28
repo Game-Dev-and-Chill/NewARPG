@@ -16,7 +16,6 @@ extends Node3D
 #@onready variables
 #endregion
 
-
 #region Functions
 #optional built-in virtual _init method
 #optional built-in virtual _enter_tree() method
