@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://c18mt1xhe47jl"]
 
 [ext_resource type="Script" path="res://scene_root.gd" id="1_7dq7q"]
-[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_o8mak"]
+[ext_resource type="Script" path="res://Player.cs" id="1_o8mak"]
 [ext_resource type="Script" path="res://Interact_Agent.gd" id="2_ntvqb"]
 [ext_resource type="Script" path="res://CamTar.gd" id="2_tvdew"]
 [ext_resource type="Texture2D" uid="uid://c7dvhx48savai" path="res://Grass_Texture.png" id="6_qjlyk"]
@@ -104,7 +104,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o4nia")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera", "interact_agent", "nav_agent")]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera", "interactAgent", "navigationAgent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19791, 0)
 collision_layer = 4
 collision_mask = 11
@@ -112,9 +112,8 @@ platform_floor_layers = 4294967041
 platform_wall_layers = 2
 script = ExtResource("1_o8mak")
 camera = NodePath("../CamTar/Camera3D")
-speed = 20.0
-interact_agent = NodePath("Interact_Agent")
-nav_agent = NodePath("NavigationAgent3D")
+interactAgent = NodePath("Interact_Agent")
+navigationAgent = NodePath("NavigationAgent3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
